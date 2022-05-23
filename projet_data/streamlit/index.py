@@ -27,6 +27,9 @@ def load_lottiesUrl(url):
 def load_data(data):
     data = pd.read_csv(data)
     return data
+@st.cache
+def convert_df(df):
+    return df.to_csv().encode('utf-8')
 
 # template for result of search
 HTML_TEMPLATE_PLAYERS = """
@@ -361,9 +364,10 @@ def main():
             with right_column:
                 st.subheader("Joueur sélectionné 2:")
                 if boutton_compare:
-                    st.write(st.session_state.player2)
+                    
                     index=["result"]
                     st.session_state.player2.index = index
+                    st.write(st.session_state.player2)
                     
                     
                     #   Player infos
@@ -610,6 +614,18 @@ def main():
 
                 filter_button = st.button("Appliquez les filtres")
                 cancel_filter_button = st.button("Enlever les filtres")
+                
+                
+                if filter_button:
+                    csv = convert_df(st.session_state.df_filter)
+
+                    st.download_button(
+                    "Télecharger le resultat de la recherche",
+                    csv,
+                    "file_result.csv",
+                    "text/csv",
+                    key='download-csv'
+                    )
 
                 if cancel_filter_button:
                     st.session_state.df_filter = df
@@ -655,9 +671,8 @@ def main():
                 
            
             with right_column:
-                show_players = st.button('Afficher les joueurs')
                 
-                if show_players:
+                if filter_button:
                     st.subheader("Nombre de joueur trouvé: {}".format(len(st.session_state.df_filter)))
 
                     for index in range(len(st.session_state.df_filter)):
