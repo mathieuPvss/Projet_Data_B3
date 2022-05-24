@@ -389,7 +389,7 @@ def main():
                     drible_player2 = st.session_state.player2.iloc[0, 40]
                     def_player2 = st.session_state.player2.iloc[0, 41]
                     phy_player2 = st.session_state.player2.iloc[0, 42]
-                    total_basic_sta2 = vitesse_player+tire_player+passe_player+drible_player+def_player+phy_player
+                    total_basic_sta2 = vitesse_player2+tire_player2+passe_player2+drible_player2+def_player2+phy_player2
 
 
                     #stat en jeu:
@@ -440,7 +440,7 @@ def main():
                     # description:
                     with st.expander("Stat basic:"):
                         st.markdown(HTML_TEMPLATE_PLAYERs_basic_stat.format(
-                        note_player, vitesse_player2, tire_player2, passe_player2,drible_player2,def_player2 ,phy_player2,total_basic_stat ),unsafe_allow_html=True)
+                        note_player, vitesse_player2, tire_player2, passe_player2,drible_player2,def_player2 ,phy_player2,total_basic_sta2 ),unsafe_allow_html=True)
 
                     with st.expander("Stat en jeu:"):
                         st.markdown(HTML_TEMPLATE_PLAYERs_ingame_stat.format(acceleration2, vitesse_sprint2, Position2, Finition2, force_frappe2, frappe_longue2, 
@@ -616,16 +616,7 @@ def main():
                 cancel_filter_button = st.button("Enlever les filtres")
                 
                 
-                if filter_button:
-                    csv = convert_df(st.session_state.df_filter)
-
-                    st.download_button(
-                    "Télecharger le resultat de la recherche",
-                    csv,
-                    "file_result.csv",
-                    "text/csv",
-                    key='download-csv'
-                    )
+                
 
                 if cancel_filter_button:
                     st.session_state.df_filter = df
@@ -659,7 +650,17 @@ def main():
                     if value_choice != 0:
                         st.session_state.df_filter = st.session_state.df_filter.loc[(st.session_state.df_filter["value_eur"] < value_choice),:] 
                             
+                
+                if filter_button:
+                    csv = convert_df(st.session_state.df_filter)
 
+                    st.download_button(
+                    "Télecharger le resultat de la recherche",
+                    csv,
+                    "file_result.csv",
+                    "text/csv",
+                    key='download-csv'
+                    )
 
             with midle_column:
                 #show result
