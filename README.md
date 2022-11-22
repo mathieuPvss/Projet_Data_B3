@@ -1,7 +1,7 @@
 # Projet_Data_B3:
 Mathieu Pannetrat & Shadrack Emmanuel 
 
-Dans ce repository vous trouverez le résultat de notre travail concernant le projet en data de fin d'anné B3 chez Ynov Paris.
+Dans ce repository vous trouverez le résultat de notre travail concernant le projet de fin de troisième année spécialité Data  chez Ynov Paris.
 Le contenu de travail est composé de :
 - 2 fichier ipynb representant les demarches de notre travail.
   --> SuiviProjetData.ipynb & notebookstorytelling.ipynb
